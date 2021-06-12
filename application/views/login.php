@@ -24,7 +24,7 @@
     <div class="card" style="width:300px">
         <div class="card-header text-center">Login</div>
         <div class="card-body">
-            <form action="Login/proseslogin" method="post">
+            <form action="#" method="post">
 
                 <label class="label text-dark">Username</label>
                 <input type="text" class="form-control" name="username" required>
@@ -32,7 +32,6 @@
                 <label class="label text-dark">Password</label>
                 <input type="password" class="form-control" name="password" required>
                 <br>
-                <?= $this->session->userdata("error"); ?>
                 <input type="submit" class="btn btn-primary float-right" value="Login">
         </div>
         <div class="card-footer text-center">
