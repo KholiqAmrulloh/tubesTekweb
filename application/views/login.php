@@ -24,13 +24,15 @@
     <div class="card" style="width:300px">
         <div class="card-header text-center">Login</div>
         <div class="card-body">
-            <form action="#" method="post">
+            <form action="login/proseslogin" method="post">
 
                 <label class="label text-dark">Username</label>
                 <input type="text" class="form-control" name="username" required>
                 <br>
                 <label class="label text-dark">Password</label>
                 <input type="password" class="form-control" name="password" required>
+                <br>
+                <?php echo $this->session->userdata("error"); ?>
                 <br>
                 <input type="submit" class="btn btn-primary float-right" value="Login">
         </div>
