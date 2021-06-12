@@ -3,7 +3,7 @@
 
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" type="text/css">
     <style>
         .login-page {
             display: flex;
@@ -11,10 +11,16 @@
             justify-content: center;
             height: 100vh;
         }
+
+        .image {
+            background-image: url(<?php echo base_url("assets/image/bglogin.jpg"); ?>);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
     </style>
 </head>
 
-<body class="login-page">
+<body class="login-page image">
     <div class="card" style="width:300px">
         <div class="card-header text-center">Login</div>
         <div class="card-body">
