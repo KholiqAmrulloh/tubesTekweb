@@ -4,7 +4,11 @@ class Login extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('login');
+        if ($this->session->userdata('login')) {
+            $this->load->view('dashboard');
+        } else {
+            $this->load->view('login');
+        }
     }
 
     function proseslogin()
