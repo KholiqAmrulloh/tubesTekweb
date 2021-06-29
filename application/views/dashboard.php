@@ -56,7 +56,7 @@ $this->load->view('header');
                 <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Logout -->
                     <li>
-                        <a href="Dashboard/logout">Logout</a>
+                        <a href="Dashboard/logout" class="btn btn-primary">Logout</a>
                     </li>
                 </ul>
 
@@ -73,7 +73,7 @@ $this->load->view('header');
                     </section>
 
                     <section class="content">
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#tambah"><i class="fa fa-plus"></i>Tambah Data</button>
+                        <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#tambah"><i class="fa fa-plus"></i>Tambah Data</button>
 
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -98,8 +98,8 @@ $this->load->view('header');
                                         <td><?= $dsn['TanggalLahir']; ?></td>
                                         <td><?= $dsn['NomorHP']; ?></td>
                                         <td align="center">
-                                            <button class="btn btn-warning btn-edit"><i class="fa fa-pen"></i></button>
-                                            <a href="#modalDelete" class="btn btn-danger" data-target="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?= site_url('Dosen/hapusDosen/' . $dsn['NIP']); ?>'); $('#idDeleteText').text(<?= $dsn['NIP']; ?>)"><i class="fa fa-trash"></i></a>
+                                            <button class="btn btn-warning btn-edit" data-toggle="modal" data-target="#modalEdit<?= $dsn['NIP']; ?>"><i class="fa fa-pen"></i></button>
+                                            <a href="#modalDelete" class="btn btn-danger" data-target="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?= site_url('Dashboard/hapus/' . $dsn['NIP']); ?>'); $('#idDeleteText').text(<?= $dsn['NIP']; ?>)"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -115,7 +115,7 @@ $this->load->view('header');
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" id="insert_form" action="<?= base_url(); ?>Dosen/addDosen" enctype='multipart/form-data'>
+                                    <form method="POST" action="<?php echo base_url('dashboard/tambah'); ?>">
                                         <div class="form-group">
                                             <label class="control-label" for="nip">NIP</label>
                                             <input type="text" name="nip" class="form-control" id="nip" required>
@@ -150,6 +150,56 @@ $this->load->view('header');
                             </div>
                         </div>
                     </div>
+
+                    <!-- modal edit -->
+                    <?php
+                    $no = 0;
+                    foreach ($Dosen as $dsn) : $no++; ?>
+                        <div class="modal fade" id="modalEdit<?= $dsn['NIP']; ?>" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="dataDosen">Form Edit Data Dosen</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="POST" action="<?php echo base_url('dashboard/edit'); ?>">
+                                            <input type="hidden" name="id" value="<?= $dsn['NIP'] ?>">
+                                            <div class="form-group">
+                                                <label class="control-label" for="nip">NIP</label>
+                                                <input type="text" name="nip" class="form-control" id="nip" value="<?= $dsn['NIP'] ?>">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="name">Nama</label>
+                                                <input type="text" name="name" class="form-control" id="name" value="<?= $dsn['Nama'] ?>">
+                                            </div>
+
+                                            <div class=" form-group">
+                                                <label class="control-label" for="alamat">Alamat</label>
+                                                <input type="text" name="alamat" class="form-control" id="alamat" value="<?= $dsn['Alamat'] ?>">
+                                            </div>
+
+                                            <div class=" form-group">
+                                                <label class="control-label" for="tgllahir">Tanggal Lahir</label>
+                                                <input type="date" name="tgllahir" class="form-control" id="tgllahir" value="<?= $dsn['TanggalLahir'] ?>">
+                                            </div>
+
+                                            <div class=" form-group">
+                                                <label class="control-label" for="nohp">Nomor HP</label>
+                                                <input type="text" name="nohp" class="form-control" id="nohp" value="<?= $dsn['NomorHP'] ?>">
+                                            </div>
+
+                                            <div class=" modal-footer">
+                                                <button type="reset" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-success"> Simpan </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
 
                     <!-- modal hapus  -->
                     <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="dataDosen" aria-hidden="true">
@@ -208,7 +258,11 @@ $this->load->view('header');
 
 <!-- Page level custom scripts -->
 <script src="vendor/sbadmin2/js/demo/datatables-demo.js"></script> -->
-
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
 <?php
 $this->load->view('footer');
 ?>

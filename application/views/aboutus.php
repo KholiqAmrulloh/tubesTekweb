@@ -56,7 +56,7 @@ $this->load->view('header');
                 <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Logout -->
 
-                    <a href="Dashboard/logout">Logout</a>
+                    <a href="Dashboard/logout" class="btn btn-primary">Logout</a>
 
                 </ul>
             </nav>

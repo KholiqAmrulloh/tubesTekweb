@@ -3,6 +3,10 @@ class aboutus extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('aboutus');
+        if ($this->session->userdata('login')) {
+            $this->load->view("aboutus");
+        } else {
+            $this->load->view('login');
+        }
     }
 }

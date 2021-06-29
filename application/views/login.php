@@ -36,9 +36,6 @@
                 <br>
                 <input type="submit" class="btn btn-primary float-right" value="Login">
         </div>
-        <div class="card-footer text-center">
-            Untuk melakukan Registrasi hubungi rekan yang memiliki Account
-        </div>
     </div>
 </body>
 
